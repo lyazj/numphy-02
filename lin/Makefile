@@ -10,4 +10,5 @@ OUT += $(PLT:%=%.pdf)
 
 include ../Makefile.rule
 
-cholesky.o gem.o: defs.h
+lin: cholesky.o gem.o
+cholesky.o gem.o lin.o: defs.h
