@@ -1,0 +1,24 @@
+#!/usr/bin/env python3
+
+from numpy import array, cos, sin, concatenate as cat, nan
+
+func = lambda x: cos(x*x)
+funcp = lambda x: -2*x*sin(x*x)
+x = array([0.0, 0.6, 0.9])
+f = func(x)
+fp = funcp(x)
+dx = cat([[nan], x[1:] - x[:-1]])
+df = cat([[nan], f[1:] - f[:-1]]) / dx
+
+Sppx1 = (6*(df[2] - df[1]) - 2*(fp[2] - fp[0])) / (dx[1] + dx[2])
+Sppx0 = 3 / dx[1] * (fp[0] - df[1]) - Sppx1 / 2
+Sppx2 = 3 / dx[2] * (df[2] - fp[2]) - Sppx1 / 2
+C1 = fp[0] - Sppx0 * dx[1] / 2
+C2 = fp[2] - Sppx2 * dx[2] / 2
+D1 = f[0] - Sppx0 * dx[1]*dx[1] / 6 - C1 * x[0]
+D2 = f[2] - Sppx2 * dx[2]*dx[2] / 6 - C2 * x[2]
+
+for i in 'Sppx0', 'Sppx1', 'Sppx2', 'C1', 'C2', 'D1', 'D2':
+    print(f'{i} = {globals()[i]:.4e}')
+print(f'S1(x) = {Sppx0 / 6 / (x[0] - x[1]):.4e}*(x - {x[1]})^3 + {Sppx1 / 6 / (x[1] - x[0]):.4e}*(x - {x[0]})^3 + {C1:.4e}*x + {D1:.4e}')
+print(f'S2(x) = {Sppx1 / 6 / (x[1] - x[2]):.4e}*(x - {x[2]})^3 + {Sppx2 / 6 / (x[2] - x[1]):.4e}*(x - {x[1]})^3 + {C2:.4e}*x + {D2:.4e}')
