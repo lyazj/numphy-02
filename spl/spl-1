@@ -15,4 +15,4 @@ D1 = f[0] - C1 * x[0]
 D2 = f[2] - C2 * x[2]
 
 for i in 'Sppx1', 'C1', 'C2', 'D1', 'D2':
-    print(f'{i} = {globals()[i]}')
+    print(f'{i} = {globals()[i]:.4e}')
