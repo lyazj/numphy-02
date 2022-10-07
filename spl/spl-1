@@ -6,7 +6,7 @@ func = lambda x: cos(x*x)
 x = array([0.0, 0.6, 0.9])
 f = func(x)
 dx = cat([[nan], x[1:] - x[:-1]])
-df = cat([[nan], f[1:] - f[:-1]])
+df = cat([[nan], f[1:] - f[:-1]]) / dx
 
 Sppx1 = 3 / (dx[1] + dx[2]) * (df[2] - df[1])
 C1 = df[1] - Sppx1 * dx[1] / 6
@@ -16,3 +16,5 @@ D2 = f[2] - C2 * x[2]
 
 for i in 'Sppx1', 'C1', 'C2', 'D1', 'D2':
     print(f'{i} = {globals()[i]:.4e}')
+print(f'S1(x) = {Sppx1 / 6 / (x[1] - x[0]):.4e}*(x - {x[0]})^3 + {C1:.4e}*x + {D1:.4e}')
+print(f'S2(x) = {Sppx1 / 6 / (x[1] - x[2]):.4e}*(x - {x[2]})^3 + {C2:.4e}*x + {D2:.4e}')
