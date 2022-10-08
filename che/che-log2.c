@@ -14,7 +14,7 @@ int main(void)
 
   for(i = 0; i <= NSEG; ++i)
   {
-    printf("f(%g) = %g\n", x, f(x));
+    printf("f(%.17e) = %.17e\n", x, f(x));
     x += 2.0 / NSEG;
   }
   chelog(4);
@@ -39,13 +39,13 @@ void chelog(int n)
 
   fprintf(stderr, "%d:", n);
   for(i = 0; i <= n; ++i)
-    fprintf(stderr, " %g", c[i]);
+    fprintf(stderr, " %.17e", c[i]);
   fprintf(stderr, "\n");
 
   for(i = 0; i <= NSEG; ++i)
   {
     y = che_eval(n, c, x);
-    printf("S%d(%g) = %g\n", n, x, y);
+    printf("S%d(%.17e) = %.17e\n", n, x, y);
     x += 2.0 / NSEG;
   }
 }
