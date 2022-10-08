@@ -15,3 +15,4 @@ chebyshev-test: chebyshev.o poly.o
 chebyshev.o chebyshev-test.o: defs.h
 che-log2: chebyshev.o poly.o
 che-log2.o: defs.h
+che-log2-plot.run: che-log2.out
