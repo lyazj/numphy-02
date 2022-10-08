@@ -1,4 +1,5 @@
 #include "defs.h"
+#include <math.h>
 
 int che_gen(int n, poly_t T[n + 1])
 {
@@ -42,7 +43,7 @@ int che_approx(int n, number c[n + 1], const poly_t T[n + 1], number f(number))
   number x_base = x_step / 2;
   number x[n + 1];
   number y[n + 1];
-  number t;
+  number t, tx;
   int i, j;
 
   if(n > POLY_MAX)
@@ -51,8 +52,9 @@ int che_approx(int n, number c[n + 1], const poly_t T[n + 1], number f(number))
   t = x_base;
   for(i = 0; i <= n; ++i)
   {
-    x[i] = t;     // x[i] = M_PI / (n + 1) * (1/2 + i)
-    y[i] = f(t);  // y[i] = f(x[i])
+    tx = cos(t);
+    x[i] = tx;     // x[i] = M_PI / (n + 1) * (1/2 + i)
+    y[i] = f(tx);  // y[i] = f(x[i])
     t += x_step;
   }
 

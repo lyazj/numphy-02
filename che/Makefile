@@ -13,3 +13,5 @@ poly-test: poly.o
 poly.o poly-test.o: defs.h
 chebyshev-test: chebyshev.o poly.o
 chebyshev.o chebyshev-test.o: defs.h
+che-log2: chebyshev.o poly.o
+che-log2.o: defs.h
