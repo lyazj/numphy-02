@@ -36,7 +36,7 @@ int che_gen(int n, poly_t T[n + 1])
   return 0;
 }
 
-int che_approx(number *c, int n, const poly_t T[n + 1], number f(number))
+int che_approx(int n, number c[n + 1], const poly_t T[n + 1], number f(number))
 {
   number x_step = M_PI / (n + 1);
   number x_base = x_step / 2;
@@ -64,4 +64,27 @@ int che_approx(number *c, int n, const poly_t T[n + 1], number f(number))
     c[i] = t * (2 - !i) / (n + 1);
   }
   return 0;
+}
+
+number che_eval(int n, const number c[n + 1], number x)
+{
+  number T0, T1, T2, y;
+  int i;
+
+  if(n <= 0)
+    return c[0];
+  if(n <= 1)
+    return c[0] + c[1] * x;
+
+  T0 = 1;
+  T1 = x;
+  y = c[0] + c[1] * x;
+  for(i = 2; i <= n; ++i)
+  {
+    T2 = 2 * x * T1 - T0;
+    y += c[i] * T2;
+    T0 = T1;
+    T1 = T2;
+  }
+  return y;
 }

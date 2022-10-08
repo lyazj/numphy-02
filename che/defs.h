@@ -33,4 +33,5 @@ const char *poly_sstr(const poly_t *P);
 
 // chebyshev.c
 int che_gen(int n, poly_t T[n + 1]);
-int che_approx(number *c, int n, const poly_t T[n + 1], number f(number));
+int che_approx(int n, number c[n + 1], const poly_t T[n + 1], number f(number));
+number che_eval(int n, const number c[n + 1], number x);
