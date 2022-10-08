@@ -1,0 +1,56 @@
+#!/usr/bin/env python3
+
+import numpy as np
+from matplotlib import pyplot as plt
+import re
+
+outfile = 'che-log2.out'
+lpat = re.compile(r'\w+')
+npat = re.compile(r'\(.*\)')
+
+def load():
+    data = {}
+    with open(outfile) as file:
+        for line in file:
+            try:
+                expr, value = line.split('=')
+                l = lpat.match(expr)[0]
+                n = float(npat.search(expr)[0][1:-1])
+                n = n * 0.5 + 1.5
+                value = float(value)
+                if l in data:
+                    data[l].append([n, value])
+                else:
+                    data[l] = [[n, value]]
+            except ValueError:
+                pass
+    return {l: np.array(data[l]) for l in data}
+
+data = load()
+for l in data:
+    print(f'{l}:')
+    print(data[l])
+
+plt.title(r'Chebyshev approximations for $\log_2(x)$ with $x \in [1, 2]$')
+plt.xlabel('$x$')
+plt.ylabel('$y$')
+plt.plot(data['S4'][:,0], data['S4'][:,1], '*', color='red', label='S4')
+plt.plot(data['S6'][:,0], data['S6'][:,1], '.', color='lightblue', label='S6')
+plt.plot(data['f'][:,0], data['f'][:,1], '--', color='green', label='f')
+plt.legend()
+plt.savefig(__file__ + '.pdf')
+plt.show()
+
+for l in data:
+    if l != 'f':
+        data[l][:,1] -= data['f'][:,1]
+
+plt.title(r'Chebyshev approximation errors for $\log_2(x)$ with $x \in [1, 2]$')
+plt.xlabel('$x$')
+plt.ylabel(r'$\Delta y$')
+for l in data:
+    if l != 'f':
+        plt.plot(data[l][:,0], data[l][:,1], '-', label=l)
+plt.legend()
+plt.savefig(__file__ + '-err.pdf')
+plt.show()

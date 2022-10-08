@@ -4,8 +4,8 @@ include ../Makefile.conf
 
 # CFLAGS := $(subst -O3,-Og,$(CFLAGS))
 BIN := $(filter-out poly chebyshev,$(BIN))
-# RUN += ???-plot
-# OUT += ???-plot.pdf
+RUN += che-log2-plot
+OUT += che-log2-plot.pdf che-log2-plot-err.pdf
 
 include ../Makefile.rule
 

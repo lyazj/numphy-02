@@ -2,7 +2,7 @@
 #include <math.h>
 #include <stdio.h>
 
-#define NSEG 1000
+#define NSEG 10000
 
 static number f(number x);
 static void chelog(int n);
