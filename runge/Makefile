@@ -17,6 +17,7 @@ chebyshev-test.o: ../che/chebyshev-test.c
 poly-test: poly.o
 chebyshev-test: chebyshev.o poly.o
 intp-test: intp.o poly.o
-runge che: intp.o chebyshev.o poly.o
+runge: intp.o poly.o
+che: chebyshev.o poly.o
 runge-plot.run: runge.out
 che-plot.run: che.out
