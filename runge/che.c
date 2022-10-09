@@ -21,7 +21,7 @@ int main(void)
   che_approx(N - 1, c, T, f);
   for(i = 2*N; i >= 0; --i)
   {
-    char buf[128];
+    char buf[64];
     double r, s;
     t = cos(i / (2.0*N) * M_PI);
     r = runge(t);
