@@ -4,6 +4,8 @@ include ../Makefile.conf
 
 # CFLAGS := $(subst -O3,-Og,$(CFLAGS))
 BIN := $(filter-out poly chebyshev intp,$(BIN))
+RUN += runge-plot
+OUT += runge-plot.pdf
 
 include ../Makefile.rule
 
