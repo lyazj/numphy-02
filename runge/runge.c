@@ -1,5 +1,6 @@
 #include "defs.h"
 #include <stdio.h>
+#include <math.h>
 
 #define NSEG 1000
 #define N      20
@@ -21,13 +22,19 @@ int main(void)
     x[i] = t;
     y[i] = runge(t);
   }
-  intp_l(&P, N, x, y);
+  intp_v(&P, N, x, y);
   for(i = 0; i <= 2*N; ++i)
   {
-    char buf[64];
+    char buf[128];
+    double r, s;
     t = XSPAN * i / (2*N) + XMIN;
-    sprintf(buf, "runge(%+.2f) = %g", t, runge(t));
-    fprintf(stderr, "%-28sS20(%+.2f) = %g\n", buf, t, poly_eval(&P, t));
+    r = runge(t);
+    s = poly_eval(&P, t);
+    sprintf(buf, "runge(%+.2f) = %g", t, r);
+    fprintf(stderr, "%-28s", buf);
+    sprintf(buf, "S20(%+.2f) = %g", t, s);
+    fprintf(stderr, "%-28s", buf);
+    fprintf(stderr, "diff = %g\n", fabs(s - r));
   }
   for(i = 0; i <= NSEG; ++i)
   {
