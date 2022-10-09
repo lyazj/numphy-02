@@ -9,5 +9,9 @@ include ../Makefile.rule
 
 $(OBJ): defs.h ../che/defs.h
 poly.o: ../che/poly.c
+poly-test.o: ../che/poly-test.c
 chebyshev.o: ../che/chebyshev.c
+chebyshev-test.o: ../che/chebyshev-test.c
+poly-test: poly.o
+chebyshev-test: chebyshev.o poly.o
 intp-test: intp.o poly.o
