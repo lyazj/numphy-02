@@ -15,3 +15,4 @@ chebyshev-test.o: ../che/chebyshev-test.c
 poly-test: poly.o
 chebyshev-test: chebyshev.o poly.o
 intp-test: intp.o poly.o
+runge: intp.o chebyshev.o poly.o
