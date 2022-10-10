@@ -32,7 +32,7 @@ int main(void)
     s = poly_eval(&P, t);
     sprintf(buf, "runge(%+.2f) = %g", t, r);
     fprintf(stderr, "%-28s", buf);
-    sprintf(buf, "S20(%+.2f) = %g", t, s);
+    sprintf(buf, "S%d(%+.2f) = %g", N, t, s);
     fprintf(stderr, "%-28s", buf);
     fprintf(stderr, "diff = %g\n", fabs(s - r));
   }
@@ -40,7 +40,7 @@ int main(void)
   {
     t = XSPAN * i / NSEG + XMIN;
     printf("runge(%.17e) = %.17e\n", t, runge(t));
-    printf("S20(%.17e) = %.17e\n", t, poly_eval(&P, t));
+    printf("S%d(%.17e) = %.17e\n", N, t, poly_eval(&P, t));
   }
   return 0;
 }

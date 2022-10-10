@@ -28,7 +28,7 @@ int main(void)
     s = che_eval(N - 1, c, t);
     sprintf(buf, "runge(%+.3f) = %g", t, r);
     fprintf(stderr, "%-28s", buf);
-    sprintf(buf, "S19(%+.3f) = %g", t, s);
+    sprintf(buf, "S%d(%+.3f) = %g", N - 1, t, s);
     fprintf(stderr, "%-28s", buf);
     fprintf(stderr, "diff = %g\n", fabs(s - r));
   }
@@ -36,7 +36,7 @@ int main(void)
   {
     t = XSPAN * i / NSEG + XMIN;
     printf("runge(%.17e) = %.17e\n", t, runge(t));
-    printf("S19(%.17e) = %.17e\n", t, che_eval(N - 1, c, t));
+    printf("S%d(%.17e) = %.17e\n", N - 1, t, che_eval(N - 1, c, t));
   }
   return 0;
 }
