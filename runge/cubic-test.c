@@ -36,6 +36,8 @@ void test_cub_2pp(void)
       printf("%16e", c[i][j]);
     printf("\n");
   }
+  for(i = 0; i <= 2; ++i)
+    assert(fabs(cub_eval(2, c, x, x[i]) - y[i]) < 1e-15);
 }
 
 void test_cub_eval(void)
