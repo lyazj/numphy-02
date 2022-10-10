@@ -1,0 +1,7 @@
+*
+!.gitignore
+!Makefile
+!*.h
+!*.c
+!atof.py
+!plot-plot
