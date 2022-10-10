@@ -20,7 +20,7 @@ int tdm_tri(int n, int m,
 
 // cubic.c
 int cub_2pp(int n, number c[n][4],
-    number x[n + 1], number y[n + 1], number ypp0, number yppn);
+    const number x[n + 1], const number y[n + 1], number ypp0, number yppn);
 number cub_eval(int n,
     const number c[n][4], const number x0[n + 1], number x);
 number cub_eval2(const number c[4], number xl, number xr, number x);

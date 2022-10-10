@@ -4,8 +4,8 @@ include ../Makefile.conf
 
 # CFLAGS := $(subst -O3,-Og,$(CFLAGS))
 BIN := $(filter-out poly chebyshev intp tdm cubic,$(BIN))
-RUN += runge-plot che-plot
-OUT += runge-plot.pdf che-plot.pdf
+RUN += runge-plot che-plot cub-plot
+OUT += runge-plot.pdf che-plot.pdf cub-plot.pdf
 
 include ../Makefile.rule
 
@@ -24,7 +24,8 @@ cubic-test: cubic.o tdm.o
 
 runge: intp.o poly.o
 che: chebyshev.o poly.o
-cub: cubic.o
+cub: cubic.o tdm.o
 
 runge-plot.run: runge.out
 che-plot.run: che.out
+cub-plot.run: cub.out

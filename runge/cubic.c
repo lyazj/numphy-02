@@ -1,7 +1,7 @@
 #include "defs.h"
 
 int cub_2pp(int n, number c[n][4],
-    number x[n + 1], number y[n + 1], number ypp0, number yppn)
+    const number x[n + 1], const number y[n + 1], number ypp0, number yppn)
 {
   number d0x[n];
   number d1y[n];
