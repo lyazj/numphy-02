@@ -15,3 +15,5 @@ tdm.o: ../runge/tdm.c
 cubic.o: ../runge/cubic.c
 
 plot: cubic.o tdm.o
+
+plot-plot.run: plot.out
