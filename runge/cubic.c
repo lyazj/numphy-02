@@ -1,7 +1,5 @@
 #include "defs.h"
 
-#include <string.h>  // to be removed
-
 int cub_2pp(int n, number c[n][4],
     number x[n + 1], number y[n + 1], number ypp0, number yppn)
 {
