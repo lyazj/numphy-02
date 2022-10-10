@@ -1,0 +1,55 @@
+#!/usr/bin/env python3
+
+import numpy as np
+from matplotlib import pyplot as plt
+import re
+
+outfile = 'che.out'
+
+pat_label = re.compile(r'^\w+')
+pat_x = re.compile(r'\(.*?\)')
+pat_y = re.compile(r'=\s*\S+')
+
+def load_data():
+    data = {}
+    with open(outfile) as file:
+        for line in file:
+            try:
+                expr, val = line.split('=')
+                label = pat_label.match(expr)[0]
+                x = float(pat_x.search(expr)[0][1:-1])
+                y = float(val)
+                if label not in data:
+                    data[label] = [[x, y]]
+                else:
+                    data[label].append([x, y])
+            except ValueError:
+                pass
+    return {key: np.array(data[key]) for key in data}
+
+data = load_data()
+for label in data:
+    print(label, end=':\n')
+    print(data[label])
+x0 = []
+y0 = []
+with open('che.log') as file:
+    for line in file:
+        x0.append(float(pat_x.search(line)[0][1:-1]))
+        y0.append(float(pat_y.search(line)[0].split('=')[1]))
+x0 = np.array(x0[1::2])
+y0 = np.array(y0[1::2])
+print('x0:')
+print(x0)
+print('y0:')
+print(y0, flush=True)
+
+plt.title('Runge phenomenon')
+plt.xlabel('$x$')
+plt.ylabel('$y$')
+for label in data:
+    plt.plot(data[label][:,0], np.abs(data[label][:,1]), label=label)
+plt.scatter(x0, y0, marker='.', color='black', label='samples')
+plt.legend()
+plt.savefig(__file__ + '.pdf')
+plt.show()
