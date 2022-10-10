@@ -6,6 +6,8 @@ int tdm(int n, int m, number A[n][m])
   number a, b;
   int i, j;
 
+  if(n == 0)
+    return 0;
   // LU decomposition
   if((a = A[0][0]) == 0)
     return 0;
@@ -36,6 +38,8 @@ int tdm_tri(int n, int m,
   number a, b;
   int i, j;
 
+  if(n == 0)
+    return 0;
   // LU decomposition
   if((a = d[0]) == 0)
     return 0;
