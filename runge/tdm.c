@@ -1,5 +1,4 @@
 #include "defs.h"
-#include <stdio.h>
 
 int tdm(int n, int m, number A[n][m])
 {
